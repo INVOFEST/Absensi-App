@@ -14,6 +14,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import invofest.com.app.Adapter.AdapterEvent;
+import invofest.com.app.Adapter.AdapterWorkshop;
 import invofest.com.app.Converter.BaseListResponse;
 import invofest.com.app.Model.User;
 import invofest.com.app.Network.ApiUtil;
@@ -50,7 +51,7 @@ public class WorkshopActivity extends AppCompatActivity {
         ivScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(WorkshopActivity.this, QRSeminar.class);
+                Intent a = new Intent(WorkshopActivity.this, QRWorkshop.class);
                 startActivity(a);
             }
         });
@@ -80,7 +81,7 @@ public class WorkshopActivity extends AppCompatActivity {
                             rootEmptyView.setVisibility(View.VISIBLE);
                         }else {
                             users = a.getData();
-                            adapter = new AdapterEvent(WorkshopActivity.this, users);
+                            adapter = new AdapterWorkshop(WorkshopActivity.this, users);
                             rvEvent.setAdapter(adapter);
                             System.err.println("datane "+a.toString());
                             rootErrorView.setVisibility(View.GONE);

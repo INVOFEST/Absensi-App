@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/gambar"
         android:textSize="28sp"
-        android:src="@drawable/emptydata"
+        android:src="@drawable/invofest_logo"
         android:layout_centerInParent="true"
         android:layout_width="150dp"
         android:layout_height="150dp" />

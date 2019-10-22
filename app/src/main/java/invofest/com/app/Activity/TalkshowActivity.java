@@ -50,7 +50,7 @@ public class TalkshowActivity extends AppCompatActivity {
         ivScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(TalkshowActivity.this, QRSeminar.class);
+                Intent a = new Intent(TalkshowActivity.this, QRTalkshow.class);
                 startActivity(a);
             }
         });

@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,9 +32,7 @@ public class QRSeminar extends AppCompatActivity implements ZXingScannerView.Res
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView scannerView;
     private static int camId = Camera.CameraInfo.CAMERA_FACING_BACK;
-//    private UserInterface userInterface;
     private PostEvent postEvent;
-//    private retrofit2.Call<BaseResponse<User>> _Seminar;
     private User users = new User();
 
 
@@ -41,6 +40,8 @@ public class QRSeminar extends AppCompatActivity implements ZXingScannerView.Res
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
 
         scannerView = new ZXingScannerView(this);
@@ -138,7 +139,6 @@ public class QRSeminar extends AppCompatActivity implements ZXingScannerView.Res
         new AlertDialog.Builder(QRSeminar.this)
                 .setMessage(message)
                 .setPositiveButton("OK", okListener)
-//                .setNegativeButton("Cancel", null)
                 .create()
                 .show();
     }
@@ -150,7 +150,7 @@ public class QRSeminar extends AppCompatActivity implements ZXingScannerView.Res
         Log.d("QRCodeScanner", result.getBarcodeFormat().toString());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Hasil Scan");
+        builder.setTitle("ID Peserta Seminar");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -162,16 +162,21 @@ public class QRSeminar extends AppCompatActivity implements ZXingScannerView.Res
                             BaseResponse<User> body = response.body();
                             if (body != null && body.getStatus()){
                                 users = body.getData();
-                                Intent a = new Intent(QRSeminar.this, SeminarActivity.class);
-                                startActivity(a);
+//                                Intent a = new Intent(QRSeminar.this, SeminarActivity.class);
+//                                startActivity(a);
+                                finish();
                                 System.err.println("hasil "+response.body().getMessage());
                                 System.err.println("hasile "+result.getText());
 
                             }else {
-                                Toast.makeText(QRSeminar.this, "Failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(QRSeminar.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
+                                finish();
                             }
                         }else {
                             System.err.println("seminaror "+ response.body().getMessage());
+                            Toast.makeText(QRSeminar.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
+                            finish();
+
 
                         }
                     }
@@ -185,13 +190,13 @@ public class QRSeminar extends AppCompatActivity implements ZXingScannerView.Res
 //                Toast.makeText(QRSeminar.this, "cek", Toast.LENGTH_SHORT).show();
             }
         });
-        builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(myResult));
-                startActivity(browserIntent);
-            }
-        });
+//        builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(myResult));
+//                startActivity(browserIntent);
+//            }
+//        });
         builder.setMessage(result.getText());
         AlertDialog alert1 = builder.create();
         alert1.show();

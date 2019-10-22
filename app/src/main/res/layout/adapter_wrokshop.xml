@@ -49,6 +49,19 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
                 android:textColor="@color/black"/>
+
+            <TextView
+                android:background="@color/yellow"
+                android:id="@+id/tvKategori"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Poltek"
+                android:padding="3dp"
+                android:fontFamily="serif"
+                android:textSize="18sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/colorPrimaryDark"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
