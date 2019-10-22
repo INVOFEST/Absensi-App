@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:background="@color/white"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.WorkshopActivity">
+
+    <LinearLayout
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorPrimary"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan aku kakaks"/>
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/ivScan"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/qr"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorPrimary"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        app:cardCornerRadius="5dp"
+        android:elevation="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/etc_empty_view"/>
+            <include layout="@layout/etc_error_view"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:padding="5dp"
+                android:layout_margin="10dp"
+                android:id="@+id/rvEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
